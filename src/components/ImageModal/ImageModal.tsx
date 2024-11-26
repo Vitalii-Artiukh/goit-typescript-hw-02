@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import Modal from 'react-modal';
 import styles from './ImageModal.module.css';
 
@@ -6,7 +6,17 @@ Modal.setAppElement('#root');
 
 Modal.defaultStyles.overlay.backgroundColor = 'rgba(0, 0, 0, 0.85)';
 
-const ImageModal = ({
+interface ImageModalProps {
+  largeImageUrl: string;
+  isNameModal: string;
+  isLocationModal: string;
+  isLikesModal: number;
+  descriptionModal: string;
+  modalIsOpen: boolean;
+  closeModal: () => void;
+}
+
+const ImageModal: FC<ImageModalProps> = ({
   largeImageUrl,
   isNameModal,
   isLocationModal,

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from 'react';
 
 const Ts = () => {
   return <div>Hello world!</div>;
@@ -20,7 +20,7 @@ const binary: number = 0b1010; // двійкове
 const octal: number = 0o744; // вісімкове
 //-----------------string: текстовий тип даних для символів та рядків.
 
-const color: string = "blue";
+const color: string = 'blue';
 
 //--------null та undefined: два спеціальні типи, що відповідають значенням null і undefined відповідно.
 
@@ -30,7 +30,7 @@ const notParam: undefined = undefined;
 //----------Також не обов'язково вказувати тип даних, якщо ви передаєте його явно.
 
 const num = 10;
-const str = "Some string";
+const str = 'Some string';
 const bool = true;
 const empty1 = null;
 const notParam1 = undefined;
@@ -43,7 +43,7 @@ function foo(num: number, str: string, bool: boolean, empty: null) {
 
 //----------Також, якщо ми задаємо значення за замовчуванням у функції, тип вказувати не потрібно.
 
-function foo1(num = 10, str = "Some string", bool = true, emoty = null) {
+function foo1(num = 10, str = 'Some string', bool = true, emoty = null) {
   // Some logic
 }
 
@@ -56,7 +56,7 @@ const obj1: {} = {};
 //--------Як і зі скалярними типами даних, ми можемо не уточнювати, що це Object:
 
 const user = {
-  name: "Tom",
+  name: 'Tom',
   age: 30,
 };
 
@@ -66,7 +66,7 @@ const user1: {
   name: string;
   age: number;
 } = {
-  name: "Tom",
+  name: 'Tom',
   age: 30,
 };
 
@@ -78,12 +78,12 @@ type User = {
 };
 
 const user2: User = {
-  name: "Tom",
+  name: 'Tom',
   age: 30,
 };
 
 const user3: User = {
-  name: "Jack",
+  name: 'Jack',
   age: 25,
 };
 
@@ -95,7 +95,7 @@ interface User1 {
 }
 
 const user4: User1 = {
-  name: "Tom",
+  name: 'Tom',
   age: 30,
 };
 
@@ -105,13 +105,13 @@ const user4: User1 = {
 
 let arrString: string[];
 
-arrString = ["text", 22]; // 22 помилка
+arrString = ['text', 22]; // 22 помилка
 
 //------------------------Давайте створимо масив чисел:
 
 let arrNumber: number[];
 
-arrNumber = [1, "text"]; // 'text' помилка
+arrNumber = [1, 'text']; // 'text' помилка
 
 //------------------Крім того, масиви в TypeScript можуть бути багатовимірними.
 
@@ -120,15 +120,15 @@ let matrix: number[][] = [
   [3, 4],
 ];
 
-matrix = [[8, 12], ["text"]]; // 'text' помилка
+matrix = [[8, 12], ['text']]; // 'text' помилка
 
 //-------------------Масиви також можуть містити елементи різних типів. Наприклад:
 
-let mixed: (number | string)[] = [4, "five"];
+let mixed: (number | string)[] = [4, 'five'];
 
 //----------------Ми також можемо вказати тип масиву через узагальнення (generic):
 
-let numbers: Array<number> = [1, 2, 3, 4, 5, "text"];
+let numbers: Array<number> = [1, 2, 3, 4, 5, 'text'];
 
 //--------------Можна визначити масив об'єктів у TypeScript.
 
@@ -136,9 +136,9 @@ const users: {
   name: string;
   age: number;
 }[] = [
-  { name: "Tom", age: 30 },
-  { name: "Jack", age: 25 },
-  { name: "Alise", age: "32" }, // '32' помилка
+  { name: 'Tom', age: 30 },
+  { name: 'Jack', age: 25 },
+  { name: 'Alise', age: '32' }, // '32' помилка
 ];
 
 //---------------Або з використанням більш зручного запису:
@@ -149,8 +149,8 @@ type User2 = {
 };
 
 const users1: User2[] = [
-  { name: "Tom", age: 30 },
-  { name: "Jack", age: 25 },
+  { name: 'Tom', age: 30 },
+  { name: 'Jack', age: 25 },
   { name: 15, age: 32 }, // 15 помилка
 ];
 
@@ -158,13 +158,13 @@ const users1: User2[] = [
 
 let arrAny: any[];
 
-arrAny = [123, "text", { name: "Tom" }, [1, 2, "text"]];
+arrAny = [123, 'text', { name: 'Tom' }, [1, 2, 'text']];
 
 //-----------------------Типи для змінних та аргументів
 //--------------------------------Any
 
 let notSure: any = 4;
-notSure = "maybe a string instead";
+notSure = 'maybe a string instead';
 notSure = false;
 notSure = {};
 // notSure = 5;
@@ -185,13 +185,13 @@ num2 = notSure;
 
 function fetchUserData(id: string, callback: (data: any) => void): void {
   // Тут може бути якийсь запит, але ми його заповнимо самі
-  const responseData = { name: "Tom" };
+  const responseData = { name: 'Tom' };
 
   callback(responseData);
 }
 
 // Використання функції:
-fetchUserData("123", (data) => {
+fetchUserData('123', data => {
   // console.log(data.name); // TypeScript не викличе помилку, навіть якщо поле name не існує
 });
 
@@ -201,7 +201,7 @@ fetchUserData("123", (data) => {
 //------------ присвоєнню значень неправильного типу.
 
 let notSure1: unknown = 4;
-notSure1 = "maybe a string instead";
+notSure1 = 'maybe a string instead';
 notSure1 = false;
 
 let num3: number;
@@ -213,12 +213,12 @@ num3 = notSure1; // Type 'unknown' is not assignable to type 'number'.
 //------------ У цьому випадку вам потрібно буде провести уточнення типів.
 
 function fetchUserData1() {
-  return "12";
+  return '12';
 }
 let userData: unknown = fetchUserData1(); // fetchUserData повертає невідомі дані
-if (typeof userData === "string") {
+if (typeof userData === 'string') {
   // console.log(userData.toUpperCase()); // OK, тепер ми знаємо, що це рядок
-} else if (typeof userData === "number") {
+} else if (typeof userData === 'number') {
   console.log(userData);
 }
 // Отже, ми можемо бути впевнені, що обробляємо дані правильного типу.
@@ -232,9 +232,9 @@ if (typeof userData === "string") {
 //------------ але замість значень ми передаємо типи даних, наприклад, [string, number].
 
 let tupleType: [string, boolean];
-tupleType = ["hello", true];
-tupleType = [true, "hello"]; // Error. Неправильні типи
-tupleType = ["hello", true, false]; // Error. Більше значень ніж у tuple
+tupleType = ['hello', true];
+tupleType = [true, 'hello']; // Error. Неправильні типи
+tupleType = ['hello', true, false]; // Error. Більше значень ніж у tuple
 
 //----------Кортежі зручні, коли нам потрібно зберегти в масив фіксовані значення,
 //----------------- наприклад, день, місяць та рік.
@@ -244,8 +244,8 @@ date = [19, 11, 2024]; // OK
 //------ то TypeScript не заперечуватиме, він не відстежує реальний вміст масиву.
 
 let fixed: [string, number];
-fixed = ["Text", 12];
-fixed.push("Add this text");
+fixed = ['Text', 12];
+fixed.push('Add this text');
 // console.log(fixed);
 
 //---------Однак, TypeScript надає гнучкі можливості для роботи з кортежами,
@@ -253,7 +253,7 @@ fixed.push("Add this text");
 //-------- для створення кортежів змінної довжини.
 let tuple: [string, ...number[]];
 
-tuple = ["hello", 11, 25, 100, 200]; // OK
+tuple = ['hello', 11, 25, 100, 200]; // OK
 
 //-----------------------------Enum
 //----------- імена змінних цього типу мають починатися з великої літери.
@@ -275,9 +275,9 @@ if (person.role === Role.ADMIN) {
 
 //---------проте ми можемо задати свої значення.
 enum userStatus {
-  Active = "ACTIVE",
-  Inactive = "INACTIVE",
-  Banned = "BANNED",
+  Active = 'ACTIVE',
+  Inactive = 'INACTIVE',
+  Banned = 'BANNED',
 }
 let status: userStatus = userStatus.Active;
 // console.log(status);
@@ -315,7 +315,7 @@ const status1 = HttpCodes1.OK; // Після компіляції у JavaScript 
 
 let mixedType: string | number | boolean;
 
-mixedType = "string";
+mixedType = 'string';
 mixedType = 10;
 mixedType = true;
 mixedType = {}; // Error: Type '{}' is not assignable to type 'string | number | boolean'.
@@ -327,7 +327,7 @@ function combine1(param1: number | string, param2: number | string) {
 //---- Ми отримуємо помилку, тому що TypeScript просто не знає, рядок там чи число.
 //------------Давайте перевіримо типи у функції.
 function combine(param1: number | string, param2: number | string) {
-  if (typeof param1 === "number" && typeof param2 === "number") {
+  if (typeof param1 === 'number' && typeof param2 === 'number') {
     return param1 + param2;
   } else {
     return param1.toString() + param2.toString();
@@ -385,11 +385,11 @@ type Manager = {
 type CEO = Employee & Manager;
 
 const ceo: CEO = {
-  name: "Alice",
+  name: 'Alice',
   id: 1,
   employees: [
     {
-      name: "Bob",
+      name: 'Bob',
       id: 2,
     },
   ],
@@ -406,32 +406,32 @@ value = 1;
 value = 2;
 value = 3; // Error: Type '3' is not assignable to type 'OneOrTwo'.
 
-type YesOrNo = "yes" | "no";
+type YesOrNo = 'yes' | 'no';
 let answer: YesOrNo;
-answer = "yes";
-answer = "no";
-answer = "maybe"; // Error: Type '"maybe"' is not assignable to type 'YesOrNo'.
+answer = 'yes';
+answer = 'no';
+answer = 'maybe'; // Error: Type '"maybe"' is not assignable to type 'YesOrNo'.
 
 //----ми маємо функцію, що приймає рядок як аргумент
 // і повертає стилі для кнопки в залежності від переданого значення.
 
-type ButtonSize = "small" | "medium" | "large";
+type ButtonSize = 'small' | 'medium' | 'large';
 
 function getButtonStyle(size: ButtonSize) {
   switch (size) {
-    case "small":
-      return { fontSize: "10px", padding: "5px" };
-    case "medium":
-      return { fontSize: "14px", padding: "10px" };
-    case "large":
-      return { fontSize: "18px", padding: "15px" };
+    case 'small':
+      return { fontSize: '10px', padding: '5px' };
+    case 'medium':
+      return { fontSize: '14px', padding: '10px' };
+    case 'large':
+      return { fontSize: '18px', padding: '15px' };
     default:
-      return { fontSize: "14px", padding: "10px" };
+      return { fontSize: '14px', padding: '10px' };
   }
 }
 
-let myButtonStyle = getButtonStyle("small");
-myButtonStyle = getButtonStyle("extra-large"); // Error: Argument of type '"extra-large"' is not assignable to parameter of type 'ButtonSize'.
+let myButtonStyle = getButtonStyle('small');
+myButtonStyle = getButtonStyle('extra-large'); // Error: Argument of type '"extra-large"' is not assignable to parameter of type 'ButtonSize'.
 // console.log(myButtonStyle);
 
 //---------------------Типи для методів та функцій
@@ -457,13 +457,13 @@ type User5 = {
 };
 
 const getUserNames = (users: User5[]): string[] => {
-  return users5.map((user) => user.name);
+  return users5.map(user => user.name);
 };
 
 const users5: User5[] = [
-  { id: 1, name: "Alice" },
-  { id: 2, name: "Bob" },
-  { id: 3, name: "Charlie" },
+  { id: 1, name: 'Alice' },
+  { id: 2, name: 'Bob' },
+  { id: 3, name: 'Charlie' },
 ];
 
 const result = getUserNames(users5);
@@ -474,7 +474,7 @@ const result = getUserNames(users5);
 // TypeScript автоматично присвоїть цій функції тип значення, що повертається string.
 
 function greet2() {
-  return "Hello World!!!";
+  return 'Hello World!!!';
 }
 
 const result1: string = greet2();
@@ -488,7 +488,7 @@ const result1: string = greet2();
 function logMessage(message: string): void {
   // console.log(message);
 }
-logMessage("Hello world!!");
+logMessage('Hello world!!');
 //-----Тип void часто використовується в callback-функціях або функціях зворотного виклику,
 // де ви хочете бути впевнені, що функція не повертає значення,
 // і тому не важливо, що повертає функція зворотного виклику.
@@ -520,7 +520,7 @@ function infinityeLoop(): never {
 let value1: never;
 
 value1 = 1;
-value1 = "2";
+value1 = '2';
 
 //---------------------------------Function Type
 //------Ми можемо описати функцію як тип. TypeScript дозволяє визначити типи параметрів,
@@ -533,7 +533,7 @@ myFunct = (first: string, second: number) => {
   // console.log(`First: ${first}, Second: ${second}`);
 };
 
-myFunct("Hello", 15);
+myFunct('Hello', 15);
 //--------------------------------------------------------------------------------------
 //----------- Визначення типу функції, який приймає два числа та повертає число
 // type CallbackType = (num1: number, num2: number) => number;
@@ -561,7 +561,7 @@ type User3 = {
 
 const user5: User3 = {
   id: 1,
-  name: "Alice",
+  name: 'Alice',
 };
 
 //----Користувацькі типи можуть бути більш складними і включати в себе інші типи даних користувача.
@@ -575,15 +575,15 @@ type UserWithCoords = {
 
 const userWithCoords: UserWithCoords = {
   id: 1,
-  name: "Alice",
+  name: 'Alice',
   coords: [10, 20],
 };
 
 //Скористаємося enum як сховищем ключів та опишемо для кожного тип.
 enum AnimalIds {
-  cat = "cat",
-  dog = "dog",
-  fish = "fish",
+  cat = 'cat',
+  dog = 'dog',
+  fish = 'fish',
 }
 
 type Animal = {
@@ -600,11 +600,11 @@ type Animal = {
 
 // Створення об'єктів типу Animal
 let cat: Animal[AnimalIds.cat] = {
-  meow: () => "Meow! I am a cat",
+  meow: () => 'Meow! I am a cat',
 };
 
 let dog: Animal[AnimalIds.dog] = {
-  bark: () => "Woof! I am a dog",
+  bark: () => 'Woof! I am a dog',
 };
 
 let fish: Animal[AnimalIds.fish] = {
@@ -612,8 +612,8 @@ let fish: Animal[AnimalIds.fish] = {
 };
 //-------------------------------
 type Person = { name: string; age?: number };
-let user6: Person = { name: "Alice" };
-user.age = "27"; //error
+let user6: Person = { name: 'Alice' };
+user.age = '27'; //error
 //-----------------------Опціональні параметри та властивості
 //-- У TypeScript ви можете зробити параметр опціональним,
 // додавши символ ? після назви параметра.
@@ -635,8 +635,8 @@ type Person1 = {
   age?: number; // age є опціональною властивістю
 };
 
-const alice: Person1 = { name: "Alice", age: 27 };
-const bob: Person1 = { name: "Bob" }; // age не вказано, це припустимо
+const alice: Person1 = { name: 'Alice', age: 27 };
+const bob: Person1 = { name: 'Bob' }; // age не вказано, це припустимо
 //-----------------------Різниця між Type та Interface
 interface Animal1 {
   name: string;
@@ -656,7 +656,7 @@ interface Animal3 {
 }
 
 let dog3: Animal3 = {
-  name: "Fido",
+  name: 'Fido',
   age: 5,
 };
 //--------------Якщо ми хочемо розширити один інтерфейс іншим,
@@ -676,7 +676,7 @@ type AnimalAge = {
 type Animal4 = AnimalName & AnimalAge;
 
 let dog5: Animal4 = {
-  name: "Fido",
+  name: 'Fido',
   age: 5,
 };
 //-----Ми також можемо міксувати Interface та type, але результат нам доведеться зберегти як тип.
@@ -705,13 +705,13 @@ interface Dog_2 extends Animal_1 {
 }
 
 class MyDog implements Dog_2 {
-  name = "Fido";
-  bark = "Woof!";
+  name = 'Fido';
+  bark = 'Woof!';
 }
 
 // Error: Property 'name' is missing in type 'OtherDog'
 class OtherDog implements Dog_2 {
-  bark = "Woof!";
+  bark = 'Woof!';
 }
 //-------За допомогою ключового слова 'implements' ми встановлюємо обов'язкові властивості для класу.
 // Якщо тепер у класі ми пропустимо будь-яку властивість, вказану в інтерфейсі,
@@ -728,11 +728,11 @@ interface Eatable {
 
 class Animal_2 implements Walkable, Eatable {
   walk() {
-    console.log("The animal walks...");
+    console.log('The animal walks...');
   }
 
   eat() {
-    console.log("The animal eats...");
+    console.log('The animal eats...');
   }
 }
 
@@ -765,8 +765,8 @@ function greet_1(person: Person_1) {
 }
 
 const john: Person_1 = {
-  firstName: "John",
-  lastName: "Doe",
+  firstName: 'John',
+  lastName: 'Doe',
 };
 
 // console.log(greet_1(john));
@@ -783,14 +783,14 @@ interface IPerson {
 let user_1: IPerson;
 
 user_1 = {
-  name: "Anthony",
+  name: 'Anthony',
   age: 21,
   greet(phrase) {
     // console.log(phrase + ' ' + this.name);
   },
 };
 
-user_1.greet("Вітання всім, я"); // Вітання всім, я Anthony
+user_1.greet('Вітання всім, я'); // Вітання всім, я Anthony
 
 //------------------Readonly
 //---Інтерфейси дозволяють використовувати модифікатор readonly.
@@ -801,10 +801,10 @@ interface ITest {
 }
 
 const person_2: ITest = {
-  name: "Person Name",
+  name: 'Person Name',
 };
 
-person_2.name = "Another Name"; // Error: Cannot assign to 'name' because it is a read-only property.
+person_2.name = 'Another Name'; // Error: Cannot assign to 'name' because it is a read-only property.
 
 //---------------------------------Extending Interfaces
 // Однією із чудових можливостей, які надають нам інтерфейси, є можливість розширення.
@@ -843,7 +843,7 @@ interface IPerson_2 {
 }
 
 const mango: IPerson_2 = {
-  name: "mango",
+  name: 'mango',
   age: 2,
 };
 
@@ -856,7 +856,7 @@ const poly: IPerson_2 = {
 //---- об'єкта одного типу на об'єкт іншого типу.
 //-----TypeScript використовує два синтаксичні підходи для типового приведення:
 //---- кутові дужки <> та оператор as.
-let someValue_2: unknown = "this is a string";
+let someValue_2: unknown = 'this is a string';
 
 // let strLength1: number = (<string>someValue_2).length;
 // or
@@ -877,17 +877,17 @@ let strLength3: number = someValue_2.length;
 
 // input.value = 'test@test.ts';
 //-------------І є другий, більш універсальний через as.
-const input_2 = document.getElementById("inputEmail") as HTMLInputElement; //OK
+const input_2 = document.getElementById('inputEmail') as HTMLInputElement; //OK
 
 // input_2.value = 'test@test.ts'; //OK
 
 //--------Таким чином, ви можете змінювати або призначати тип у процесі виконання коду.
 // Спробуємо видалити його зараз і призначити пізніше.
 
-const input_3 = document.getElementById("inputEmail");
+const input_3 = document.getElementById('inputEmail');
 
 if (input_3) {
-  (input_3 as HTMLInputElement).value = "test@test.ts";
+  (input_3 as HTMLInputElement).value = 'test@test.ts';
 }
 // Однак, коли використовується JSX (React), тільки оператор as можна використати,
 // оскільки синтаксис <Type> може бути неправильно інтерпретований як JSX.
@@ -906,9 +906,9 @@ type Person_3 = {
 };
 
 const user_2: Person_3 = {
-  name: "Alex",
-  gender: "MAN",
-  country: "Ukraine",
+  name: 'Alex',
+  gender: 'MAN',
+  country: 'Ukraine',
 };
 //------------Обов'язково потрібно вказати name та будь-яку кількість інших полів.
 //-------Використання індексних властивостей дозволяє вам створювати словники або карти,
@@ -926,9 +926,9 @@ type Users = {
 let users_5: Users = {};
 
 let user_5: User_3 = {
-  id: "1",
-  name: "Alex",
-  email: "alex@example.com",
+  id: '1',
+  name: 'Alex',
+  email: 'alex@example.com',
 };
 
 users_5[user_5.id] = user_5;
@@ -944,19 +944,19 @@ users_5[user_5.id] = user_5;
 // ви можете визначити одну функцію, яка працює з "будь-яким" типом даних.
 
 let arr: Array<string | number> = [];
-arr = ["str", 15, "yes", true]; // Error Type 'boolean' is not assignable to type 'string | number'.
+arr = ['str', 15, 'yes', true]; // Error Type 'boolean' is not assignable to type 'string | number'.
 
 // Оскільки Promise може повернути абсолютно все,
 //  без дженерика ми ніколи не дізнаємось, що він повертає.
 // Створимо Promise, вказавши тип.
 
-const promise: Promise<string> = new Promise((resolve) => {
+const promise: Promise<string> = new Promise(resolve => {
   setInterval(() => {
-    resolve("Done!");
+    resolve('Done!');
   }, 1000);
 });
 
-promise.then((data) => {
+promise.then(data => {
   // console.log(data);
 });
 
@@ -989,7 +989,7 @@ let numbers_1 = [1, 2, 3, 4, 5];
 let secondNum = secondElement(numbers_1);
 // console.log(secondNum);
 
-let strings = ["1", "2", "3", "4", "5"];
+let strings = ['1', '2', '3', '4', '5'];
 let secondStr = secondElement(strings);
 // console.log(secondStr);
 
@@ -997,7 +997,7 @@ let secondStr = secondElement(strings);
 function merge(objA: object, objB: object) {
   return Object.assign(objA, objB);
 }
-const merged = merge({ name: "Alisa" }, { age: 28 });
+const merged = merge({ name: 'Alisa' }, { age: 28 });
 // console.log(merged.name);
 // Ми отримали помилку на merged.name, тому що TypeScript просто не знає, що міститься в об'єкті.
 
@@ -1013,7 +1013,7 @@ const merged = merge({ name: "Alisa" }, { age: 28 });
 function merge1<T extends object, U extends object>(objA: T, objB: U) {
   return Object.assign(objA, objB);
 }
-const merged1 = merge1({ name: "Alisa_1" }, { age: 32 });
+const merged1 = merge1({ name: 'Alisa_1' }, { age: 32 });
 
 // console.log(merged1.name);
 
@@ -1034,7 +1034,7 @@ function getLength<T extends Length>(str: T) {
 //--------Ще одним прикладом використання extends може бути функція,
 // що приймає масив елементів певного типу:
 function arrayLogger<T extends Array<string>>(array: T): void {
-  array.forEach((item) => console.log(item));
+  array.forEach(item => console.log(item));
 }
 // arrayLogger(['Hello', 'World']);
 // arrayLogger(['1', '2', '3', '4']);
@@ -1055,9 +1055,9 @@ function getPersonInfo(person: Person_4, key: PersonKeys) {
 }
 
 const john_4: Person_4 = {
-  name: "John",
+  name: 'John',
   age: 25,
-  location: "NY",
+  location: 'NY',
 };
 
 // console.log(getPersonInfo(john_4, 'age')); // 25
@@ -1092,8 +1092,8 @@ class DataStorage<T> {
 }
 
 const textStorage = new DataStorage<string>();
-textStorage.addItem("Hello");
-textStorage.addItem("World");
+textStorage.addItem('Hello');
+textStorage.addItem('World');
 // console.log(textStorage.getItems()); // ['Hello', 'World']
 textStorage.addItem(1); // Error: Argument of type 'number' is not assignable to parameter of type 'string'
 
@@ -1101,7 +1101,7 @@ const numberStorage = new DataStorage<number>();
 numberStorage.addItem(1);
 numberStorage.addItem(2);
 // console.log(numberStorage.getItems()); // [1, 2]
-numberStorage.addItem("TEXT"); // Error: Argument of type 'number' is not assignable to parameter of type 'number'
+numberStorage.addItem('TEXT'); // Error: Argument of type 'number' is not assignable to parameter of type 'number'
 // У цьому прикладі клас "DataStorage" має узагальнений тип "T",
 // який визначається під час створення екземпляра класу.
 // В результаті ми отримуємо універсальний клас для зберігання даних,
@@ -1123,7 +1123,7 @@ class KeyValuePair<TKey, TValue> {
   }
 }
 
-const pair1 = new KeyValuePair("name", "Alice");
+const pair1 = new KeyValuePair('name', 'Alice');
 // console.log(pair1.getKey()); // 'name'
 // console.log(pair1.getValue()); // 'Alice'
 
@@ -1149,8 +1149,8 @@ function createUser(data: Partial<User_4>): User_4 {
   // Деякі значення за замовчуванням:
   const defaultUser: User_4 = {
     id: Date.now(),
-    name: "",
-    email: "",
+    name: '',
+    email: '',
     registered: false,
   };
 
@@ -1158,7 +1158,7 @@ function createUser(data: Partial<User_4>): User_4 {
   return { ...defaultUser, ...data };
 }
 
-const newUser = createUser({ name: "Alice", email: "alice@example.com" });
+const newUser = createUser({ name: 'Alice', email: 'alice@example.com' });
 
 // console.log(newUser);
 
@@ -1174,27 +1174,27 @@ type User_6 = {
 
 let alice_1: User_6 = {
   id: 1,
-  name: "Alice",
-  email: "alice@example.com",
+  name: 'Alice',
+  email: 'alice@example.com',
 };
 
-alice_1.name = "Bob"; // OK
+alice_1.name = 'Bob'; // OK
 
 let aliceReadonly: Readonly<User_6> = {
   id: 1,
-  name: "Alice",
-  email: "alice@example.com",
+  name: 'Alice',
+  email: 'alice@example.com',
 };
 
-aliceReadonly.name = "Bob"; // Error: Cannot assign to 'name' because it is a read-only property.
+aliceReadonly.name = 'Bob'; // Error: Cannot assign to 'name' because it is a read-only property.
 // console.log(aliceReadonly.name);
 
 //--- Пам'ятаєте, ми створювали тип кортежу? Але метод 'push' все одно працював.
 // Так ось, використовуючи Readonly, можна створити дійсно незмінний масив.
 
-const arr_1: Readonly<string[]> = ["One", "Two", "Three"];
+const arr_1: Readonly<string[]> = ['One', 'Two', 'Three'];
 
-arr_1.push("Four"); // Error: Property 'push' does not exist on type 'readonly string[]'.
+arr_1.push('Four'); // Error: Property 'push' does not exist on type 'readonly string[]'.
 
 //------------------------------- Pick<T, K>
 // Pick — це утилітний тип у TypeScript,
@@ -1209,12 +1209,12 @@ type User4 = {
   email: string;
 };
 
-type UserBasicInfo = Pick<User4, "id" | "name">;
+type UserBasicInfo = Pick<User4, 'id' | 'name'>;
 
 let userBasicInfo: UserBasicInfo = {
   id: 1,
-  name: "John Doe",
-  email: "john@example.com", // Error: Property 'email' does not exist on type 'UserBasicInfo'
+  name: 'John Doe',
+  email: 'john@example.com', // Error: Property 'email' does not exist on type 'UserBasicInfo'
 };
 // Pick дуже корисний, коли ви хочете працювати тільки з певною підмножиною властивостей наявного типу.
 // Він часто використовується для складання типів, наприклад, під час роботи з API,
@@ -1241,8 +1241,8 @@ type BaseProject = {
 };
 
 type Assignment = {
-  employee: Pick<BaseEmployee, "id" | "firstName" | "lastName">;
-  projects: Pick<BaseProject, "id" | "name" | "deadline">[];
+  employee: Pick<BaseEmployee, 'id' | 'firstName' | 'lastName'>;
+  projects: Pick<BaseProject, 'id' | 'name' | 'deadline'>[];
   shouldNotifyEmployee?: boolean;
 };
 
@@ -1253,21 +1253,21 @@ type Assignment = {
 // Принцип роботи Record наступний:
 // ви вказуєте набір ключів K і тип T, який буде присвоєно кожному з цих ключів.
 
-type Weekdays = "Mon" | "Tue" | "Wed" | "Thu" | "Fri";
-type Weekend = "Sat" | "Sun";
+type Weekdays = 'Mon' | 'Tue' | 'Wed' | 'Thu' | 'Fri';
+type Weekend = 'Sat' | 'Sun';
 
 type Day = Weekdays | Weekend;
 
 type DayTranslations = Record<Day, string>;
 
 const translations: DayTranslations = {
-  Mon: "Понеділок",
-  Tue: "Вівторок",
-  Wed: "Середа",
-  Thu: "Четверг",
+  Mon: 'Понеділок',
+  Tue: 'Вівторок',
+  Wed: 'Середа',
+  Thu: 'Четверг',
   Fri: "П'ятниця",
-  Sat: "Субота",
-  Sun: "Неділя",
+  Sat: 'Субота',
+  Sun: 'Неділя',
 };
 // У цьому прикладі DayTranslations — це тип об'єкта, ключами якого є значення типу Day,
 // а значеннями – рядки.Отже, ви отримуєте суворо типізований об'єкт перекладу,
@@ -1278,9 +1278,9 @@ const translations: DayTranslations = {
 
 // Ми можемо використовувати enum для цього. Давайте визначимо enum для наших ролей:
 enum UserRoles {
-  admin = "admin",
-  manager = "manager",
-  employee = "employee",
+  admin = 'admin',
+  manager = 'manager',
+  employee = 'employee',
 }
 
 type UserRolesStatuses = Record<UserRoles, boolean>;
@@ -1323,7 +1323,7 @@ type Person2 = {
 };
 // Ми можемо створити новий тип 'PersonWithoutLocation', використовуючи 'Omit':
 
-type PersonWithoutLocation = Omit<Person2, "location">;
+type PersonWithoutLocation = Omit<Person2, 'location'>;
 
 // Тепер 'PersonWithoutLocation' є таким самим типом, як і 'Person',
 //  але без властивості 'location'.Це може бути корисно,
@@ -1334,7 +1334,7 @@ type PersonWithoutLocation = Omit<Person2, "location">;
 //  Для функцій він має використовуватися з typeof.
 
 function greeting() {
-  return "Hello, world!";
+  return 'Hello, world!';
 }
 
 type Greeting = ReturnType<typeof greeting>; // 'string'
@@ -1396,3 +1396,135 @@ type NonNullableType = NonNullable<SomeType>;
 // У цьому прикладі SomeType — це тип, який може бути або рядком, або null,
 //  або undefined.Під час використання NonNullable < SomeType > ми отримуємо тип NonNullableType,
 //  який може бути тільки рядком.
+
+//------------------------------ Типізація компонентів React
+
+type Props = {
+  name: string;
+  age: number;
+};
+
+export function User({ name, age }: Props) {
+  return (
+    <div>
+      <p>{`User name is ${name}`}</p>
+      <p>{`User age is ${age}`}</p>
+    </div>
+  );
+}
+// У цьому прикладі ми визначаємо тип Props, який описує пропси, що приймає наш компонент User.
+//  Потім ми використовуємо цей тип для анотації пропсів у функції компонента.
+
+// Ми також можемо використовувати React.FC або React.FunctionComponent
+//  для визначення типів функціонального компонента:
+
+type Props1 = {
+  name: string;
+  age: number;
+};
+
+export const user7: React.FC<Props1> = ({ name, age }) => {
+  return (
+    <div>
+      <p>{`User name is ${name}`}</p>
+      <p>{`User age is ${age}`}</p>
+    </div>
+  );
+};
+// У цьому прикладі React.FC<Props> визначає тип функціонального компонента, який приймає пропси типу Props.
+//  Це використання generic дозволяє автоматично уточнити тип аргументів функції.Однак варто зазначити,
+//  що React.FC і React.FunctionComponent автоматично додають визначення типу для пропа children,
+//  навіть якщо він не визначений у типах пропсів.
+
+// Тут зазначено, що React.FC сам типізує children, але давайте подивимося, як це зробити самостійно:
+
+type Props2 = {
+  name: string;
+  age: number;
+  children: React.ReactNode; // Типизация для children
+};
+
+export function User8({ name, age, children }: Props2) {
+  return (
+    <div>
+      <p>{`User name is ${name}`}</p>
+      <p>{`User age is ${age}`}</p>
+      {children} {/* Рендерим children */}
+    </div>
+  );
+}
+// Давайте трохи розберемося у цих типах для children.
+
+// React.ReactNode: це більш загальний тип, який містить в собі майже всі можливі типи,
+//  які можуть бути відрендерені в компоненті React.
+//  Це може містити string, number, null, undefined, boolean, ReactElement, ReactFragment, ReactPortal.
+
+//------------------------------ React.ReactElement
+// якщо ви використовуєте ReactElement у типах для children, ви зможете приймати тільки елементи React.
+
+// Ось приклад типізації children як ReactElement:
+
+type Props3 = {
+  children: React.ReactElement;
+};
+
+export function Panel({ children }: Props3) {
+  return <div>{children}</div>;
+}
+// Тепер Panel може приймати лише дочірні елементи, які є елементами React:
+
+// // Це працює:
+// <Panel>
+//   <div>Hello, world!</div>  !!!!!!
+// </Panel>
+
+// // Це не працює, тому що
+// // "Hello, world!" - це рядок, а не елемент
+// <Panel>Hello, world!</Panel>
+
+// Ви також можете побачити такий тип даних, як JSX.Element, це по суті React.ReactElement,
+//  єдина різниця, що ReactElement — це вбудований тип у бібліотеці React,
+//  а JSX.Element — це інтерфейс, визначений у глобальній області JSX TypeScript.
+//  Однак, використання ReactElement є більш явним та надійним.
+
+type User9 = {
+  name: string;
+  email: string;
+};
+
+type Props4 = {
+  user: User9;
+  onUserUpdate: (user: User) => void;
+};
+
+export function UserProfile({ user, onUserUpdate }: Props4) {
+  // компонент UserProfile
+  return null;
+}
+// Тут user — це об'єкт з певною структурою, а onUserUpdate — це функція, що приймає об'єкт такої ж структури.
+
+//---------------------------------------- useRef
+// Коли ви використовуєте useRef, можна вказати тип посилання.
+//  Це корисно, якщо ви маєте посилання на DOM - елемент,
+//  і ви хочете отримати доступ до його властивостей або методів.
+
+// Ось простий приклад використання useRef з типом HTMLInputElement:
+
+export function TextInputWithFocus() {
+  // Тут ми вказуємо, що ref буде посилатися на елемент типу HTMLInputElement
+  const inputEl = useRef<HTMLInputElement>(null);
+
+  const onButtonClick = () => {
+    // Поле current тепер має властивості, що є у елемента HTMLInputElement
+    inputEl.current?.focus();
+  };
+
+  return (
+    <>
+      {/* Тут inputEl стане посиланням на цей input елемент */}
+      <input ref={inputEl} type="text" />
+      <button onClick={onButtonClick}>Встановити фокус на поле введення</button>
+    </>
+  );
+}
+// У цьому прикладі useRef використовується для створення посилання на елемент input. Зверніть увагу, що ми вказуємо HTMLInputElement як тип useRef. Це означає, що ми матимемо доступ до всіх властивостей і методів input елемента, таких як метод focus.

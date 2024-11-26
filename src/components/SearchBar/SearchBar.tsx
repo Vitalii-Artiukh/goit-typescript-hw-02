@@ -1,10 +1,28 @@
-import React from 'react';
+import React, { FC, FormEvent } from 'react';
 import toast from 'react-hot-toast';
 import { FaSearch } from 'react-icons/fa';
 import styles from './SearchBar.module.css';
 
-export default function SearchBar({ defaultValue, setSearchQuery }) {
-  const handleSubmit = event => {
+interface Photos {
+  id: string;
+  alt_description: string;
+  urls: {
+    small: string;
+  };
+  user: {
+    first_name: string;
+    location: string;
+    total_likes: number;
+  };
+}
+
+interface SearchBarProps {
+  defaultValue: () => void;
+  setSearchQuery: string;
+}
+
+const SearchBar: FC<SearchBarProps> = ({ defaultValue, setSearchQuery }) => {
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     const query = event.target.elements.search.value.trim();
@@ -38,4 +56,6 @@ export default function SearchBar({ defaultValue, setSearchQuery }) {
       </form>
     </header>
   );
-}
+};
+
+export default SearchBar;

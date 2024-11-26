@@ -1,19 +1,27 @@
-import React from 'react';
+import React, { FC } from 'react';
 import styles from './ImageCard.module.css';
+import { ImageProps, OpenModal, Photos } from '../../types';
 
-const ImageCard = ({ photo, openModal }) => {
+interface ImageCardProps {
+  image: Photos[];
+  openModal: OpenModal;
+}
+
+const ImageCard: FC<ImageCardProps> = ({ image, openModal }) => {
+  const small = image.urls.small;
   return (
     <div>
-      <img className={styles.img}
-        src={photo.urls.small}
-        alt={photo.alt_description}
+      <img
+        className={styles.img}
+        src={small}
+        alt={image.alt_description}
         onClick={() =>
           openModal(
-            photo.urls.regular,
-            photo.user.first_name,
-            photo.user.location,
-            photo.user.total_likes,
-            photo.alt_description
+            image.urls.regular,
+            image.user.first_name,
+            image.user.location,
+            image.user.total_likes,
+            image.alt_description
           )
         }
       />

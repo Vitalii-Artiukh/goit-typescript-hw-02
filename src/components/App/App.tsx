@@ -1,4 +1,4 @@
-import { useState, react, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
 import fetchPhotos from '../API/searchAPI';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
@@ -8,35 +8,36 @@ import Loader from '../Loader/Loader';
 import LoadMoreBtn from '../LoadMoreBtn/LoadMoreBtn';
 import SearchBar from '../SearchBar/SearchBar';
 import styles from './App.module.css';
+import { number, object } from 'prop-types';
+import { Photos } from '../../types';
 
-//////////////////////  hw-04  ////////////////////////
 const App = () => {
-  const [photos, setPhotos] = useState([]);
-  const [searchQuery, setSearchQuery] = useState('');
+  const [photos, setPhotos] = useState<Photos[]>([]);
+  const [searchQuery, setSearchQuery] = useState<string>('');
 
-  const [pages, setPages] = useState(1);
-  const [noMorePages, setNoMorePages] = useState(false);
+  const [pages, setPages] = useState<number>(1);
+  const [noMorePages, setNoMorePages] = useState<boolean>(false);
 
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState<boolean>(true);
 
-  const [error, setError] = useState(false);
-  const [errorMessage, setErrorMessage] = useState('');
+  const [error, setError] = useState<boolean>(false);
+  const [errorMessage, setErrorMessage] = useState<string>('');
 
-  const [modalIsOpen, setModalIsOpen] = useState(false);
-  const [largeImageUrl, setLargeImageUrl] = useState('');
-  const [isNameModal, setIsNameModal] = useState('');
-  const [isLocationModal, setIsLocationModal] = useState('');
-  const [isLikesModal, setIsLikesModal] = useState(0);
-  const [descriptionModal, setDescriptionModal] = useState('');
+  const [modalIsOpen, setModalIsOpen] = useState<boolean>(false);
+  const [largeImageUrl, setLargeImageUrl] = useState<string>('');
+  const [isNameModal, setIsNameModal] = useState<string>('');
+  const [isLocationModal, setIsLocationModal] = useState<string>('');
+  const [isLikesModal, setIsLikesModal] = useState<number>(0);
+  const [descriptionModal, setDescriptionModal] = useState<string>('');
 
   useEffect(() => {
-    async function addPhotos() {
+    async function addPhotos<T>(): Promise<void> {
       try {
         setLoading(true);
 
         setError(false);
 
-        const data = await fetchPhotos(searchQuery, pages);
+        const data = await fetchPhotos<T>(searchQuery, pages);
         const gallery = data.results;
         setPhotos(prevPhoto => [...prevPhoto, ...gallery]);
         setNoMorePages(pages >= data.total_pages);
@@ -49,7 +50,6 @@ const App = () => {
       } catch (error) {
         setError(true);
         setErrorMessage(error.message);
-        console.log(error.message);
       } finally {
         setLoading(false);
       }
@@ -79,11 +79,11 @@ const App = () => {
   };
 
   function openModal(
-    urlModal,
-    nameModal,
-    locationModal,
-    likesModal,
-    description
+    urlModal: string,
+    nameModal: string,
+    locationModal: string,
+    likesModal: number,
+    description: string
   ) {
     setModalIsOpen(true);
     setLargeImageUrl(urlModal);
