@@ -1,10 +1,7 @@
 import React, { FC } from 'react';
 import { IoCloudDownloadOutline } from 'react-icons/io5';
 import styles from './LoadMoreBtn.module.css';
-
-interface LoadMoreBtnProps {
-  addNextPage: () => void;
-}
+import { LoadMoreBtnProps } from '../../types';
 
 const LoadMoreBtn: FC<LoadMoreBtnProps> = ({ addNextPage }) => {
   return (

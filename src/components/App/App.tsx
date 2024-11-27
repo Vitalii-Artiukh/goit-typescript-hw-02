@@ -9,6 +9,7 @@ import LoadMoreBtn from '../LoadMoreBtn/LoadMoreBtn';
 import SearchBar from '../SearchBar/SearchBar';
 import styles from './App.module.css';
 import { Photos } from '../../types';
+import { instanceOf } from 'prop-types';
 
 const App = () => {
   const [photos, setPhotos] = useState<Photos[]>([]);
@@ -49,7 +50,7 @@ const App = () => {
         }
       } catch (error: unknown) {
         setError(true);
-        setErrorMessage(error.message);
+        if (error instanceof Error) setErrorMessage(error.message);
       } finally {
         setLoading(false);
       }

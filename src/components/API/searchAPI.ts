@@ -4,8 +4,6 @@ import axios, { AxiosResponse } from 'axios';
 axios.defaults.baseURL = 'https://api.unsplash.com';
 const clientId: string = 'L8gl-NSA6WgM_hr7Eskh6cG-VL4XlvL29DTZBgzk6gQ';
 
-//  client_id=L8gl-NSA6WgM_hr7Eskh6cG-VL4XlvL29DTZBgzk6gQ
-
 interface axiosParams {
   params: {
     page: number;

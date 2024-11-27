@@ -41,3 +41,11 @@ export interface SearchBarProps {
   defaultValue: () => void;
   setSearchQuery: (query: string) => void;
 }
+
+export interface LoadMoreBtnProps {
+  addNextPage: () => void;
+}
+
+export interface ErrorMessageProps {
+  errorMessage: string;
+}

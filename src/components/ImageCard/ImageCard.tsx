@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import styles from './ImageCard.module.css';
-import { ImageCardProps } from '../../types';
+import { ImageCardProps, OpenModal } from '../../types';
 
 const ImageCard: FC<ImageCardProps> = ({
   small,

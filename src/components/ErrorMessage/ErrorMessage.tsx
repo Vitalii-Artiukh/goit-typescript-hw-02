@@ -1,9 +1,6 @@
 import React, { FC } from 'react';
 import styles from './ErrorMessage.module.css';
-
-interface ErrorMessageProps {
-  errorMessage: string;
-}
+import { ErrorMessageProps } from '../../types';
 
 const ErrorMessage: FC<ErrorMessageProps> = ({ errorMessage }) => {
   return (
