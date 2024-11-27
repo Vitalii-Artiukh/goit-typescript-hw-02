@@ -8,12 +8,12 @@ import Loader from '../Loader/Loader';
 import LoadMoreBtn from '../LoadMoreBtn/LoadMoreBtn';
 import SearchBar from '../SearchBar/SearchBar';
 import styles from './App.module.css';
-import { number, object } from 'prop-types';
+// import { number, object } from 'prop-types';
 import { Photos } from '../../types';
 
 const App = () => {
   const [photos, setPhotos] = useState<Photos[]>([]);
-  const [searchQuery, setSearchQuery] = useState<string>('');
+  const [searchQuery, setSearchQuery] = useState('');
 
   const [pages, setPages] = useState<number>(1);
   const [noMorePages, setNoMorePages] = useState<boolean>(false);
@@ -24,20 +24,20 @@ const App = () => {
   const [errorMessage, setErrorMessage] = useState<string>('');
 
   const [modalIsOpen, setModalIsOpen] = useState<boolean>(false);
-  const [largeImageUrl, setLargeImageUrl] = useState<string>('');
+  const [largeImageUrl, setLargeImageUrl] = useState('');
   const [isNameModal, setIsNameModal] = useState<string>('');
   const [isLocationModal, setIsLocationModal] = useState<string>('');
   const [isLikesModal, setIsLikesModal] = useState<number>(0);
-  const [descriptionModal, setDescriptionModal] = useState<string>('');
+  const [descriptionModal, setDescriptionModal] = useState('');
 
   useEffect(() => {
-    async function addPhotos<T>(): Promise<void> {
+    async function addPhotos() {
       try {
         setLoading(true);
 
         setError(false);
 
-        const data = await fetchPhotos<T>(searchQuery, pages);
+        const data = await fetchPhotos<Photos>(searchQuery, pages);
         const gallery = data.results;
         setPhotos(prevPhoto => [...prevPhoto, ...gallery]);
         setNoMorePages(pages >= data.total_pages);
@@ -46,8 +46,9 @@ const App = () => {
             position: 'top-left',
             duration: 3000,
           });
+          return;
         }
-      } catch (error) {
+      } catch (error: unknown) {
         setError(true);
         setErrorMessage(error.message);
       } finally {
@@ -79,17 +80,17 @@ const App = () => {
   };
 
   function openModal(
-    urlModal: string,
-    nameModal: string,
-    locationModal: string,
-    likesModal: number,
+    regular: string,
+    firstName: string,
+    location: string,
+    totalLikes: number,
     description: string
   ) {
     setModalIsOpen(true);
-    setLargeImageUrl(urlModal);
-    setIsNameModal(nameModal);
-    setIsLocationModal(locationModal);
-    setIsLikesModal(likesModal);
+    setLargeImageUrl(regular);
+    setIsNameModal(firstName);
+    setIsLocationModal(location);
+    setIsLikesModal(totalLikes);
     setDescriptionModal(description);
   }
 

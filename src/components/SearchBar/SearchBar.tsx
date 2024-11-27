@@ -2,6 +2,7 @@ import React, { FC, FormEvent } from 'react';
 import toast from 'react-hot-toast';
 import { FaSearch } from 'react-icons/fa';
 import styles from './SearchBar.module.css';
+import { string } from 'prop-types';
 
 interface Photos {
   id: string;
@@ -18,14 +19,16 @@ interface Photos {
 
 interface SearchBarProps {
   defaultValue: () => void;
-  setSearchQuery: string;
+  setSearchQuery: (query: string) => void;
 }
 
 const SearchBar: FC<SearchBarProps> = ({ defaultValue, setSearchQuery }) => {
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    const query = event.target.elements.search.value.trim();
+    const targetEl = event.target as HTMLFormElement;
+    const input = targetEl.elements.namedItem('search') as HTMLInputElement;
+    const query = input.value.trim();
 
     if (query === '') {
       toast.error('Please enter your search queries!', {
@@ -34,7 +37,7 @@ const SearchBar: FC<SearchBarProps> = ({ defaultValue, setSearchQuery }) => {
     } else {
       defaultValue();
       setSearchQuery(query);
-      event.target.reset();
+      targetEl.reset();
     }
   };
 

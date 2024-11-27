@@ -14,19 +14,13 @@ export interface Photos {
 
 export interface OpenModal {
   openModal: (
-    urlModal: string,
-    nameModal: string,
-    locationModal: string,
-    likesModal: number,
+    regular: string,
+    firstName: string,
+    location: string,
+    totalLikes: number,
     description: string
   ) => void;
 }
-
-// urlModal: string,
-// nameModal: string,
-// locationModal: string,
-// likesModal: number,
-// description: string
 
 export interface ImageProps {
   photos: Photos[];
