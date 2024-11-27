@@ -4,8 +4,6 @@ import styles from './ImageModal.module.css';
 
 Modal.setAppElement('#root');
 
-Modal.defaultStyles.overlay.backgroundColor = 'rgba(0, 0, 0, 0.85)';
-
 interface ImageModalProps {
   largeImageUrl: string;
   isNameModal: string;
