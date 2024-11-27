@@ -26,3 +26,18 @@ export interface ImageProps {
   photos: Photos[];
   openModal: OpenModal;
 }
+
+export interface ImageCardProps {
+  small: string;
+  regular: string;
+  firstName: string;
+  location: string;
+  totalLikes: number;
+  description: string;
+  openModal: OpenModal;
+}
+
+export interface SearchBarProps {
+  defaultValue: () => void;
+  setSearchQuery: (query: string) => void;
+}

@@ -1,21 +1,6 @@
 import React, { FC } from 'react';
 import styles from './ImageCard.module.css';
-import { ImageProps, OpenModal, Photos } from '../../types';
-
-// interface ImageCardProps {
-//   image: Photos[];
-//   openModal: OpenModal;
-// }
-
-interface ImageCardProps {
-  small: string;
-  regular: string;
-  firstName: string;
-  location: string;
-  totalLikes: number;
-  description: string;
-  openModal: OpenModal;
-}
+import { ImageCardProps } from '../../types';
 
 const ImageCard: FC<ImageCardProps> = ({
   small,

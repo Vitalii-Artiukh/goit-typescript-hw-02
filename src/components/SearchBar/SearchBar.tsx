@@ -2,25 +2,7 @@ import React, { FC, FormEvent } from 'react';
 import toast from 'react-hot-toast';
 import { FaSearch } from 'react-icons/fa';
 import styles from './SearchBar.module.css';
-import { string } from 'prop-types';
-
-interface Photos {
-  id: string;
-  alt_description: string;
-  urls: {
-    small: string;
-  };
-  user: {
-    first_name: string;
-    location: string;
-    total_likes: number;
-  };
-}
-
-interface SearchBarProps {
-  defaultValue: () => void;
-  setSearchQuery: (query: string) => void;
-}
+import { SearchBarProps } from '../../types';
 
 const SearchBar: FC<SearchBarProps> = ({ defaultValue, setSearchQuery }) => {
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {

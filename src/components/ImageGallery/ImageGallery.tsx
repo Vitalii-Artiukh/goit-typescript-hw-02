@@ -1,47 +1,7 @@
 import React, { FC } from 'react';
 import ImageCard from '../ImageCard/ImageCard';
 import styles from './ImageGallery.module.css';
-// import { ImageProps, Photos } from '../../types';
-
-export interface Photos {
-  id: string;
-  alt_description: string;
-  urls: {
-    small: string;
-    regular: string;
-  };
-  user: {
-    first_name: string;
-    location: string;
-    total_likes: number;
-  };
-}
-
-export interface OpenModal {
-  openModal: (
-    urlModal: string,
-    nameModal: string,
-    locationModal: string,
-    likesModal: number,
-    description: string
-  ) => void;
-}
-
-export interface ImageProps {
-  photos: Photos[];
-  openModal: OpenModal;
-}
-
-// type Image = {
-//   id: string;
-//   urls: { small: string; regular: string };
-//   alt_description: string;
-// };
-
-// type ImageGalleryProps = {
-//   images: Image[];
-//   onModalOpen: (regular: string, altDescription: string) => void;
-// };
+import { ImageProps } from '../../types';
 
 const ImageGallery: FC<ImageProps> = ({ photos, openModal }) => {
   return (

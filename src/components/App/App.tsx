@@ -8,7 +8,6 @@ import Loader from '../Loader/Loader';
 import LoadMoreBtn from '../LoadMoreBtn/LoadMoreBtn';
 import SearchBar from '../SearchBar/SearchBar';
 import styles from './App.module.css';
-// import { number, object } from 'prop-types';
 import { Photos } from '../../types';
 
 const App = () => {
