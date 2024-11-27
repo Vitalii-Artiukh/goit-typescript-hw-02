@@ -24,7 +24,13 @@ export interface OpenModal {
 
 export interface ImageProps {
   photos: Photos[];
-  openModal: OpenModal;
+  openModal: (
+    regular: string,
+    firstName: string,
+    location: string,
+    totalLikes: number,
+    description: string
+  ) => void;
 }
 
 export interface ImageCardProps {
@@ -34,7 +40,13 @@ export interface ImageCardProps {
   location: string;
   totalLikes: number;
   description: string;
-  openModal: OpenModal;
+  openModal: (
+    regular: string,
+    firstName: string,
+    location: string,
+    totalLikes: number,
+    description: string
+  ) => void;
 }
 
 export interface SearchBarProps {
